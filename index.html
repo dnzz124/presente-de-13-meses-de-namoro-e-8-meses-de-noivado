@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#171329">
+  <title>Uma Aventura por Nós</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">♥</span>
+        <div><h1>Uma Aventura por Nós</h1><p>um pequeno mundo feito com carinho</p></div>
+      </div>
+      <div class="top-actions">
+        <div class="music-picker"><label for="musicTrackSelect">Trilha</label><select id="musicTrackSelect" aria-label="Escolher uma das cinco músicas"><option value="0">1 · Música 1</option><option value="1">2 · Música 2</option><option value="2">3 · Música 3</option><option value="3">4 · Música 4</option><option value="4">5 · Música 5</option></select></div><div class="volume-control" title="Volume da música"><label for="musicVolume">♫ <span>Volume</span></label><input id="musicVolume" type="range" min="0" max="100" value="22" aria-label="Volume da música"><output id="musicVolumeValue">22%</output></div><button id="musicBtn" class="small-btn" aria-pressed="false" title="Ligar ou desligar música">♫ <span>Música</span></button>
+        <button id="helpBtn" class="small-btn" title="Como jogar">? <span>Ajuda</span></button>
+      </div>
+    </header>
+
+    <section class="game-shell" aria-label="Jogo">
+      <div class="hud">
+        <div class="hud-pill"><span class="hud-icon">✿</span><span id="heartCount">0</span><span>memórias</span></div>
+        <div class="quest-box"><span class="quest-label">MISSÃO</span><span id="questText">Encontre a primeira lembrança</span></div>
+        <button id="mapBtn" class="journal-btn map-btn">🗺 Mapa</button><button id="journalBtn" class="journal-btn">✉ Cartinhas <b id="letterCount">0/3</b></button>
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="game" width="960" height="540" aria-label="Mundo do jogo em orientação horizontal"></canvas>
+        <div id="startScreen" class="overlay">
+          <div class="intro-card">
+            <div class="intro-sparkles">✦　♡　✦</div>
+            <p class="eyebrow">UM PRESENTE PRA VOCÊ</p>
+            <h2>Uma Aventura<br><em>por Nós</em></h2>
+            <p class="intro-copy">Existe um lugar pequenininho onde cada flor guarda carinho, cada caminho esconde uma surpresa e cada lembrança conta um pedacinho da nossa história.</p>
+            <p class="intro-note">Antes de começar, crie sua personagem ✨</p>
+            <div class="character-creator">
+              <label for="characterName">Nome da personagem</label>
+              <input id="characterName" maxlength="18" placeholder="Digite seu nome" value="Você" autocomplete="nickname">
+              <div class="character-preview"><div><strong>Prévia da personagem</strong><small>Suas mudanças aparecem aqui!</small></div><canvas id="characterPreview" width="180" height="120" aria-label="Prévia da personagem personalizada"></canvas></div>
+              <div class="creator-grid">
+                <div class="palette-field"><label for="skinColor">Tom de pele</label><input class="color-picker" id="skinColor" type="color" value="#f4c8b9" aria-label="Escolher tom de pele"><div class="swatches"><button type="button" data-palette="skinColor" data-color="#f4c8b9" style="--swatch:#f4c8b9" aria-label="Pêssego"></button><button type="button" data-palette="skinColor" data-color="#f0d1ad" style="--swatch:#f0d1ad" aria-label="Claro"></button><button type="button" data-palette="skinColor" data-color="#c98765" style="--swatch:#c98765" aria-label="Moreno"></button><button type="button" data-palette="skinColor" data-color="#8b5747" style="--swatch:#8b5747" aria-label="Escuro"></button><button type="button" data-palette="skinColor" data-color="#e6ad9c" style="--swatch:#e6ad9c" aria-label="Rosado"></button></div></div>
+                <div class="palette-field"><label for="hairColor">Cabelo</label><input class="color-picker" id="hairColor" type="color" value="#3a294e" aria-label="Escolher cor do cabelo"><div class="swatches"><button type="button" data-palette="hairColor" data-color="#3a294e" style="--swatch:#3a294e" aria-label="Roxo escuro"></button><button type="button" data-palette="hairColor" data-color="#231c2b" style="--swatch:#231c2b" aria-label="Preto"></button><button type="button" data-palette="hairColor" data-color="#75452f" style="--swatch:#75452f" aria-label="Castanho"></button><button type="button" data-palette="hairColor" data-color="#d6a04b" style="--swatch:#d6a04b" aria-label="Dourado"></button><button type="button" data-palette="hairColor" data-color="#b76f9d" style="--swatch:#b76f9d" aria-label="Rosa"></button><button type="button" data-palette="hairColor" data-color="#e7e1f0" style="--swatch:#e7e1f0" aria-label="Prateado"></button></div></div>
+                <div class="palette-field wide-field"><label for="outfitColor">Roupa</label><input class="color-picker" id="outfitColor" type="color" value="#bd8fe0" aria-label="Escolher cor da roupa"><div class="swatches"><button type="button" data-palette="outfitColor" data-color="#bd8fe0" style="--swatch:#bd8fe0" aria-label="Lilás"></button><button type="button" data-palette="outfitColor" data-color="#e88ab8" style="--swatch:#e88ab8" aria-label="Rosa"></button><button type="button" data-palette="outfitColor" data-color="#7e9fda" style="--swatch:#7e9fda" aria-label="Azul"></button><button type="button" data-palette="outfitColor" data-color="#8ac6a0" style="--swatch:#8ac6a0" aria-label="Verde"></button><button type="button" data-palette="outfitColor" data-color="#f0c86f" style="--swatch:#f0c86f" aria-label="Amarelo"></button><button type="button" data-palette="outfitColor" data-color="#f0e8f5" style="--swatch:#f0e8f5" aria-label="Branco"></button></div></div>
+                <div class="wide-field"><label for="accessoryChoice">Acessório</label><select id="accessoryChoice"><option value="none">Sem acessório</option><option value="bow">Laço fofo</option><option value="flower">Coroa de flores</option><option value="glasses">Óculos</option><option value="star">Presilha de estrela</option><option value="headphones">Fones de ouvido</option><option value="halo">Aurinha brilhante</option></select></div>
+              </div>
+            </div>
+            <button id="startBtn" class="primary-btn">Criar e começar <span>♥</span></button>
+            <p class="tiny-note">Feito com carinho, especialmente para você.</p>
+          </div>
+        </div>
+        <div id="dialogue" class="dialogue hidden" role="dialog" aria-live="polite">
+          <div class="speaker-row"><span id="speakerIcon">♡</span><strong id="speakerName">Mensagem</strong><span class="dialogue-hint">ESPAÇO / TOQUE</span></div>
+          <p id="dialogueText"></p>
+          <button id="nextDialogue" class="next-btn">Continuar ▸</button>
+        </div>
+        <div id="toast" class="toast hidden"></div>
+      </div>
+
+      <div class="bottom-hud">
+        <div class="legend"><span class="legend-dot"></span> Você <span class="legend-heart">♥</span> Memórias escondidas <span class="legend-flower">✿</span> Interagir</div>
+        <div class="control-hint">Mover: <kbd>WASD</kbd> / <kbd>↑↓←→</kbd> · Interagir: <kbd>E</kbd> · Cartinhas: <kbd>J</kbd></div>
+      </div>
+    </section>
+
+    <section class="mobile-controls" aria-label="Controles de toque">
+      <div class="dpad">
+        <button data-dir="up" aria-label="Mover para cima">▲</button>
+        <div><button data-dir="left" aria-label="Mover para esquerda">◀</button><button data-dir="down" aria-label="Mover para baixo">▼</button><button data-dir="right" aria-label="Mover para direita">▶</button></div>
+      </div>
+      <button id="interactTouch" class="touch-action">♡<span>Interagir</span></button>
+    </section>
+
+    <footer><span>✦ Explore sem pressa.</span><span>Seu cantinho, suas lembranças. ♡</span></footer>
+  </main>
+
+  <div id="rotateNotice" class="rotate-notice" role="status"><div class="rotate-card"><span>📱 ↻</span><h2>Gire o celular</h2><p>Esta aventura foi preparada para jogar na horizontal.</p><button id="rotateBtn" class="primary-btn">Tentar modo horizontal</button></div></div>
+
+  <div id="mapModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="mapTitle">
+    <div class="modal-card map-card">
+      <button class="close-btn" data-close="mapModal" aria-label="Fechar">×</button>
+      <p class="eyebrow">MAPA DA NOSSA AVENTURA</p>
+      <h2 id="mapTitle">Um caminho de cada vez 🗺</h2>
+      <p class="modal-intro">O mapa mostra o quanto ainda falta caminhar. A distância diminui conforme você explora o mundo.</p>
+      <div class="journey-map" aria-label="Mapa esquemático da aventura">
+        <div class="route-line"><span class="route-progress" id="routeProgress"></span></div>
+        <div class="map-stop start"><span>⌂</span><small>Começo</small></div>
+        <div class="map-stop memory"><span>♥</span><small>Memórias</small></div>
+        <div class="map-stop house"><span>♡</span><small>Nosso cantinho</small></div>
+        <div class="map-stop final"><span>✦</span><small>Jardim secreto</small></div>
+      </div>
+      <div class="distance-box"><strong id="distanceValue">100%</strong><span id="distanceText">do caminho ainda espera por você</span></div>
+      <p class="map-note">“Talvez um dia a distância acabe. Até lá, cada passinho conta.” ♡</p>
+      <button class="primary-btn" data-close="mapModal">Continuar caminhando ✨</button>
+    </div>
+  </div>
+
+  <div id="journalModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="journalTitle">
+    <div class="modal-card">
+      <button class="close-btn" data-close="journalModal" aria-label="Fechar">×</button>
+      <p class="eyebrow">PEQUENAS COISAS, GRANDES SENTIMENTOS</p>
+      <h2 id="journalTitle">Cartinhas para você ✉</h2>
+      <p class="modal-intro">Cada carta aparece quando você encontra uma lembrança especial pelo caminho.</p>
+      <div id="lettersList" class="letters-list"></div>
+      <p id="journalProgress" class="progress-note">Encontre as cartinhas pelo mapa.</p>
+    </div>
+  </div>
+
+  <div id="letterModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+    <div class="modal-card letter-card">
+      <button class="close-btn" data-close="letterModal" aria-label="Fechar">×</button>
+      <div class="letter-stamp">♥</div>
+      <p class="eyebrow">UMA CARTINHA ENCONTRADA</p>
+      <h2 id="letterTitle">Para você</h2>
+      <p id="letterBody" class="letter-body"></p>
+      <button class="primary-btn" data-close="letterModal">Guardar no coração ♥</button>
+    </div>
+  </div>
+
+  <div id="helpModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+    <div class="modal-card">
+      <button class="close-btn" data-close="helpModal" aria-label="Fechar">×</button>
+      <p class="eyebrow">GUIA DA AVENTURA</p>
+      <h2 id="helpTitle">Como jogar 🌷</h2>
+      <ul class="help-list">
+        <li><b>Explore:</b> use WASD ou as setas no teclado. No celular, use os botões direcionais.</li>
+        <li><b>Interaja com o mundo:</b> aproxime-se de flores, árvores, lanternas, fonte, banco, casinha, placas, cartas e da outra personagem; pressione E ou o botão ♡.</li>
+        <li><b>Encontre:</b> existem cartinhas e três memórias escondidas pelo mapa.</li>
+        <li><b>Complete:</b> encontre as três cartinhas e as três memórias para desbloquear o encontro final no jardim secreto.</li>
+        <li><b>Música:</b> escolha uma das cinco trilhas no menu, ligue no botão ♫ e ajuste o volume.</li>
+      </ul>
+      <button class="primary-btn" data-close="helpModal">Entendi! ✨</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
